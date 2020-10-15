@@ -14,22 +14,23 @@ class App {
         this.initRoutes()
     }
 
-    public initServer = async () => {
+    async initServer() {
         try {
-            this.app.listen(this.port, () => console.log(`Listening on http://${'localhost'}:${this.port}/`))
+            this.app.listen(this.port, () => 
+            console.log(`Listening on http://${'localhost'}:${this.port}/`))
         } catch (error) {
             console.error(error)
         }
     }
 
-    private config = () => {
+    private config() {
         this.app.use(cors())
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: false }))
         if (process.env.NODE_ENV !== 'production') this.app.use(morgan('dev'))
     }
 
-    private initRoutes = () => {
+    private initRoutes() {
         router(this.app)
     }
 }
