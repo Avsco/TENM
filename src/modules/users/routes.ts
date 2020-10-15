@@ -1,12 +1,18 @@
 import { Router } from 'express'
-const router = Router()
 
 import controller from './controller'
 
-router.get('/users/:id', controller.show)
-router.put('/users/:id', controller.put)
+class Routes {
 
-router.post('/users/signin', controller.signIn)
-router.post('/users/signup', controller.signUp)
+    createRoutes(router: Router, route: string): Router{
+        router.get(`${route}/:id`, controller.show)
+        router.put(`${route}/:id`, controller.put)
 
-export { router as users }
+        router.post(`${route}/signin`, controller.signIn)
+        router.post(`${route}/signup`, controller.signUp)
+
+        return router
+    }
+}
+
+export default new Routes()

@@ -1,7 +1,11 @@
-import { Application } from 'express'
+import { Application, Router } from 'express'
 
-import { users } from "../modules/users/routes";
+import Users from "../modules/users/routes";
+
+let router = Router()
+
+router = Users.createRoutes(router, '/users')
 
 export default function (app: Application) {
-    app.use(users)
+    app.use(router)
 }
