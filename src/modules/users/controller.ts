@@ -53,7 +53,7 @@ class Controller {
             const model = await busiessController.signIn(req.body.username, req.body.password)
             if(!model) return res.status(404).json({msg: 'Error en username o password' }) 
             
-            return res.status(200).json(Dto.single(model))
+            return res.status(200).json(Dto.forLogin(model))
         } catch (error) {
             return handlerError(error.code, error.message, res)
         }

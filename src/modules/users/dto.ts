@@ -1,9 +1,15 @@
 import { Interface } from "./modelSchema";
 
 class UserDto {
-    public single = (model: Interface) => ({
+    single = (model: Interface) => ({
       name: model.name,
       usermane: model.username
+    })
+
+    forLogin = (model: Interface) => ({
+      id: model.id,
+      name: model.name,
+      username: model.username
     })
 }
 
