@@ -4,6 +4,8 @@ import router from "./router";
 // import { config } from 'node-config-ts'
 
 import morgan from 'morgan'
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json'
 
 class App {
     private port = 5000
@@ -14,22 +16,25 @@ class App {
         this.initRoutes()
     }
 
-    public initServer = async () => {
+    async initServer() {
         try {
-            this.app.listen(this.port, () => console.log(`Listening on http://${'localhost'}:${this.port}/`))
+            this.app.listen(this.port, () => 
+            console.log(`Listening on http://${'localhost'}:${this.port}/`))
         } catch (error) {
             console.error(error)
         }
     }
 
-    private config = () => {
+    private config() {
         this.app.use(cors())
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: false }))
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+        
         if (process.env.NODE_ENV !== 'production') this.app.use(morgan('dev'))
     }
 
-    private initRoutes = () => {
+    private initRoutes() {
         router(this.app)
     }
 }

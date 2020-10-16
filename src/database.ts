@@ -13,11 +13,11 @@ class Database {
         }
     }
 
-    public init = async () => {
+    async init () {
         await this.connect()
     }
 
-    private connect = async () => {
+    private async connect() {
         try {
             await mongoose.connect(this.URI, this.config)
             console.log('database conected')
