@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node-config-ts",
     "build": "rimraf dist && tsc",
     "serve": "nodemon src/index.ts",
     "start": "node dist/index.js"
