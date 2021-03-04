@@ -3,10 +3,10 @@ const router = Router()
 
 import controller from './controller'
 
-router.get('/user/:id', controller.show)
-router.put('/user/:id', controller.put)
+router.get('/users/:id', controller.show)
+router.put('/users/:id', controller.put)
 
-router.post('/user/signin', controller.signIn)
-router.post('/user/signup', controller.signUp)
+router.post('/users/signin', controller.signIn)
+router.post('/users/signup', controller.signUp)
 
 export { router as users }
