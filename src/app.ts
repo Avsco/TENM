@@ -5,7 +5,7 @@ import router from "./router";
 import morgan from "morgan";
 
 class App {
-  private readonly port = 5000;
+  private readonly port = process.env.PORT || 5000;
   private readonly app: Express = express();
 
   constructor() {
