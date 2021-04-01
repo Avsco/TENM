@@ -1,22 +1,20 @@
-/*No sabe nada del controlador y de la base de datos, solo recibe los datos del controlador
-y se los manda a la capa de la base de datos (dao)*/
-import Dao from "./dao";
+import service from "./service";
 import { Interface } from "./modelSchema";
 
 class Model {
-  public show = async (id: string): Promise<Interface | null> =>
-    await Dao.show(id);
+  show = async (id: string): Promise<Interface | null> =>
+    await service.show(id);
 
-  public put = async (id: string, model: any): Promise<Interface | null> =>
-    await Dao.put(id, model);
+  put = async (id: string, model: any): Promise<Interface | null> =>
+    await service.put(id, model);
 
-  public signIn = async (
+  signIn = async (
     username: string,
     password: string
-  ): Promise<Interface | null> => await Dao.signIn(username, password);
+  ): Promise<Interface | null> => await service.signIn(username, password);
 
-  public signUp = async (model: any): Promise<Interface | null> =>
-    await Dao.signUp(model);
+  signUp = async (model: any): Promise<Interface | null> =>
+    await service.signUp(model);
 }
 
 export default new Model();
