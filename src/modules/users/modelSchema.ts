@@ -5,8 +5,6 @@ export interface Interface extends Document {
   name: string;
   username: string;
   password: string;
-  comparePassword: (password: string) => Promise<boolean>;
-  encryptPassword: (password: string) => Promise<string>;
 }
 
 const modelSchema: Schema = new Schema(
