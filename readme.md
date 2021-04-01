@@ -1,13 +1,25 @@
-### Esqueleto API NODE MONGODB TS
+# API TENM
 
-# Run app
+## install dependencies
 
-    ´´´ npm run start ´´´
+```
+    npm install
+```
 
-# Run dev app
+## Run app
 
-    ´´´ npm run serve ´´´
+```
+    npm run start
+```
 
-# Build app
+## Run development app
 
-    ´´´ npm run build ´´´
+```
+    npm run serve
+```
+
+## Build app
+
+```
+     npm run build
+```
