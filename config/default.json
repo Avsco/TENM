@@ -1,9 +1,0 @@
-{
-    "port": 5000,
-    "domain": "localhost",
-    "mongodb": {
-        "port": 21017,
-        "host": "localhost",
-        "name": "backend"
-    }
-}
