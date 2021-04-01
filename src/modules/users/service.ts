@@ -21,7 +21,7 @@ class Dao {
     const model = await ModelSchema.findOne({ username: username });
     if (!model) return null;
 
-    const isMatch = await model.comparePassword(password);
+    const isMatch = model.password == password;
     if (isMatch) return model;
 
     return null;
