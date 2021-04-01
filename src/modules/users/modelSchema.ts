@@ -1,4 +1,5 @@
 import { model, Schema, Document } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 export interface Interface extends Document {
   name: string;
@@ -27,4 +28,5 @@ const modelSchema: Schema = new Schema(
   { versionKey: false }
 );
 
+modelSchema.plugin(mongoosePaginate);
 export default model<Interface>("users", modelSchema);
