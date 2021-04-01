@@ -1,37 +1,38 @@
-import express, { Express } from 'express'
-import cors from 'cors'
+import express, { Express } from "express";
+import cors from "cors";
 import router from "./router";
-// import { config } from 'node-config-ts'
 
-import morgan from 'morgan'
+import morgan from "morgan";
 
 class App {
-    private port = 5000
-    private app: Express = express()
+  private port = 5000;
+  private app: Express = express();
 
-    constructor() {
-        this.config()
-        this.initRoutes()
-    }
+  constructor() {
+    this.config();
+    this.initRoutes();
+  }
 
-    public initServer = async () => {
-        try {
-            this.app.listen(this.port, () => console.log(`Listening on http://${'localhost'}:${this.port}/`))
-        } catch (error) {
-            console.error(error)
-        }
+  public initServer = async () => {
+    try {
+      this.app.listen(this.port, () =>
+        console.log(`Listening on http://${"localhost"}:${this.port}/`)
+      );
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    private config = () => {
-        this.app.use(cors())
-        this.app.use(express.json())
-        this.app.use(express.urlencoded({ extended: false }))
-        if (process.env.NODE_ENV !== 'production') this.app.use(morgan('dev'))
-    }
+  private config = () => {
+    this.app.use(cors());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: false }));
+    if (process.env.NODE_ENV !== "production") this.app.use(morgan("dev"));
+  };
 
-    private initRoutes = () => {
-        router(this.app)
-    }
+  private initRoutes = () => {
+    router(this.app);
+  };
 }
 
-export default new App()
+export default new App();
