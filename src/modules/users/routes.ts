@@ -1,12 +1,13 @@
 import { Router } from "express";
-const router = Router();
-
 import controller from "./controller";
 
-router.get("/user/:id", controller.show);
-router.put("/user/:id", controller.put);
+const router = Router();
+const breakPoint = "/user";
 
-router.post("/user/signin", controller.signIn);
-router.post("/user/signup", controller.signUp);
+router.get(`${breakPoint}/:id`, controller.show);
+router.put(`${breakPoint}/:id`, controller.put);
+
+router.post(`${breakPoint}/signin`, controller.signIn);
+router.post(`${breakPoint}/signup`, controller.signUp);
 
 export { router as users };

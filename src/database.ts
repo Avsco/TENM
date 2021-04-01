@@ -13,7 +13,7 @@ class Database {
     };
   }
 
-  public init = async () => {
+  init = async () => {
     await this.connect();
   };
 

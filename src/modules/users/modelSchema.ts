@@ -23,7 +23,7 @@ const modelSchema: Schema = new Schema(
       required: true,
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 modelSchema.plugin(mongoosePaginate);

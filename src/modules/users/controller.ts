@@ -2,20 +2,20 @@ import { Request, Response } from "express";
 import Model from "./model";
 
 class Controller {
-  show = async (req: Request, res: Response): Promise<Response> => {
+  async show(req: Request, res: Response): Promise<Response> {
     try {
       const id = req.params.id;
 
       const model = await Model.show(id);
-      if (!model) return res.status(404).json({ msg: "El recurso no existe" });
+      if (!model) return res.status(404).json({ msg: "Resource not found" });
 
       return res.status(200).json(model);
-    } catch (error) {
-      return res.status(422).json({ code: error.code, msg: error.message });
+    } catch ({ code, message }) {
+      return res.status(422).json({ code: code, msg: message });
     }
-  };
+  }
 
-  put = async (req: Request, res: Response): Promise<Response> => {
+  async put(req: Request, res: Response): Promise<Response> {
     try {
       let model: any = {};
       if (req.body.name) model.name = req.body.name;
@@ -23,23 +23,21 @@ class Controller {
       if (req.body.password) model.password = req.body.password;
 
       const newModel = await Model.put(req.params.id, model);
-      if (!newModel)
-        return res.status(404).json({ msg: "El recurso no existe" });
+      if (!newModel) return res.status(404).json({ msg: "Resource not found" });
 
       return res.status(200).json(newModel);
-    } catch (error) {
-      return res.status(422).json({ code: error.code, msg: error.message });
+    } catch ({ code, message }) {
+      return res.status(422).json({ code: code, msg: message });
     }
-  };
+  }
 
-  signUp = async (req: Request, res: Response): Promise<Response> => {
+  async signUp(req: Request, res: Response): Promise<Response> {
     try {
-      if (!req.body.name)
-        return res.status(400).json({ msg: "falta el nombre" });
+      if (!req.body.name) return res.status(400).json({ msg: "uame required" });
       if (!req.body.username)
-        return res.status(400).json({ msg: "falta el username" });
+        return res.status(400).json({ msg: "username required" });
       if (!req.body.password)
-        return res.status(400).json({ msg: "falta el password" });
+        return res.status(400).json({ msg: "password required" });
 
       const newModel = await Model.signUp({
         username: req.body.username,
@@ -47,30 +45,30 @@ class Controller {
         password: req.body.password,
       });
       if (!newModel)
-        return res.status(500).json({ msg: "El recuso no pudo ser creado" });
+        return res.status(422).json({ msg: "Resource was not created" });
 
       return res.status(201).json(newModel);
-    } catch (error) {
-      return res.status(422).json({ code: error.code, msg: error.message });
+    } catch ({ code, message }) {
+      return res.status(422).json({ code: code, msg: message });
     }
-  };
+  }
 
-  signIn = async (req: Request, res: Response) => {
+  async signIn(req: Request, res: Response) {
     try {
       if (!req.body.username)
-        return res.status(400).json({ msg: "falta el username" });
+        return res.status(400).json({ msg: "username required" });
       if (!req.body.password)
-        return res.status(400).json({ msg: "falta el password" });
+        return res.status(400).json({ msg: "password required" });
 
       const model = await Model.signIn(req.body.username, req.body.password);
       if (!model)
-        return res.status(404).json({ msg: "Erorr en username o password" });
+        return res.status(404).json({ msg: "The data does not match" });
 
       return res.status(200).json(model);
-    } catch (error) {
-      return res.status(422).json({ code: error.code, msg: error.message });
+    } catch ({ code, message }) {
+      return res.status(422).json({ code: code, msg: message });
     }
-  };
+  }
 }
 
 export default new Controller();

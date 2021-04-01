@@ -5,15 +5,15 @@ import router from "./router";
 import morgan from "morgan";
 
 class App {
-  private port = 5000;
-  private app: Express = express();
+  private readonly port = 5000;
+  private readonly app: Express = express();
 
   constructor() {
     this.config();
     this.initRoutes();
   }
 
-  public initServer = async () => {
+  initServer = async () => {
     try {
       this.app.listen(this.port, () =>
         console.log(`Listening on http://${"localhost"}:${this.port}/`)
